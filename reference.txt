@@ -1,0 +1,4 @@
+﻿https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/october/cutting-edge-policy-based-authorization-in-asp-net-core
+
+
+https://www.youtube.com/watch?v=6X6iONXhz2w

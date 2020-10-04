@@ -1,4 +1,5 @@
 using AuthenticationApi.AuthorizationPolicies;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,8 +53,10 @@ namespace AuthenticationApi
 
         private static void SetUpAuthorization(IServiceCollection services)
         {
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
-            services.AddAuthorization(AddUsersAuthorization);
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(); //this will be used for the baseic authentication mechanism
+            //services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            //services.AddAuthorization(AddUsersAuthorization);
             
         }
 
@@ -80,7 +83,7 @@ namespace AuthenticationApi
 
             app.UseSwagger();
 
-         
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwaggerUI(c =>
