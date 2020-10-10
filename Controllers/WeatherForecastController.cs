@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace AuthenticationApi.Controllers
 {
+    
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

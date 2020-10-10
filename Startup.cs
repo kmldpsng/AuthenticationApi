@@ -1,4 +1,6 @@
 using AuthenticationApi.AuthorizationPolicies;
+using AuthenticationApi.Handler;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -48,13 +50,18 @@ namespace AuthenticationApi
                     }
                 });
             });
-            SetUpAuthorization(services);
+
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthenticationHandler",null);
+
+            //SetUpAuthorization(services);
         }
 
         private static void SetUpAuthorization(IServiceCollection services)
         {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(); //this will be used for the baseic authentication mechanism
+
             //services.AddAuthentication(IISDefaults.AuthenticationScheme);
             //services.AddAuthorization(AddUsersAuthorization);
             
